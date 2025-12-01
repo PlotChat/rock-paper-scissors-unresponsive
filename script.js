@@ -94,13 +94,13 @@ function updateAndDisplayScore(p1, p2){
 }
 
 // display score animation
-function displayScore(player, reset){
+function displayScore(player){
     const targetP = player === 1 ? player1 : player2;
 
     const scoreContainer = targetP.querySelector(".score");
     scoreContainer.textContent = targetP === player1 ? game.humanScore : game.computerScore;
 
-    if(reset === false){
+    if(player !== 0){
         scoreContainer.classList.add("score-win");
         scoreContainer.addEventListener("animationend", function handler() {
             scoreContainer.classList.remove("score-win");
@@ -194,7 +194,7 @@ function resetGame(){
     game.currentRound = 0;
 
     displayCountRound();
-    displayScore();
+    displayScore(0);
 }
 
 // display end game pop up
