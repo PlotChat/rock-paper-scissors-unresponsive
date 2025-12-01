@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%" fill="none" aria-labelledby="title" role="img">
+  <style>
+    .rock-lines {
+      stroke: currentColor;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+  </style>
+  <g transform="translate(0, 0)">
+    <path class="rock-lines" d="M 30 15L 65 15L 90 35L 90 60L 45 90L 25 85L 10 50Z"/>
+    <path class="rock-lines" d="M 30 15 L 50 55M 50 55 L 90 35M 50 55 L 45 90"/>
+  </g>
+</svg>

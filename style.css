@@ -1,0 +1,426 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+	margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		interpolate-size: allow-keywords;
+	}
+}
+
+body {
+	/* 4. Add accessible line-height */
+	line-height: 1.5;
+	/* 5. Improve text rendering */
+	-webkit-font-smoothing: antialiased;
+	font-family: "Playfair Display";
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+	text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+	isolation: isolate;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	background-color: whitesmoke;
+	min-height: 100vh;
+}
+
+#game-title {
+	background-color: rgb(233, 229, 229);
+	padding: 2%;
+	text-align: center;
+	font-size: 2.5rem;
+	font-weight: 500;
+	color: rgb(47, 47, 47);
+}
+
+#game-roundCount-container {
+	font-weight: 500;
+	font-size: 2rem;
+	text-align: center;
+	line-height: 3;
+}
+
+#game-container {
+	display: grid;
+	grid-template-rows: 6rem 1fr 40%;
+	width: 100%;
+	flex: 1;
+	clip-path: polygon(25% 0%, 75% 0%, 100% 35%, 100% 100%, 0 100%, 0 35%);
+}
+
+.player-container {
+	width: 20rem;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	position: relative;
+}
+
+.profile {
+	display: flex;
+	flex-direction: column;
+	margin-top: -4rem;
+}
+
+.profile .title {
+	font-size: 2rem;
+	font-weight: 300;
+}
+
+.profile .score {
+	font-size: 5rem;
+	line-height: 0.8;
+	display: block;
+}
+
+.player-choice-icon {
+	position: absolute;
+	bottom: 2.4rem;
+}
+
+.icon-three-dots {
+	display: flex;
+	justify-content: center;
+	opacity: 1;
+	align-items: center;
+	transition: opacity 0.2s;
+}
+
+.hidden {
+	opacity: 0;
+	animation: slideDown 0.2s forwards;
+}
+
+.icon-three-dots img {
+	width: 1.3rem;
+	animation: float 1.2s ease-in-out infinite;
+}
+
+.icon-three-dots img:nth-child(1) {
+	animation-delay: 0s;
+}
+.icon-three-dots img:nth-child(2) {
+	animation-delay: 0.1s;
+}
+.icon-three-dots img:nth-child(3) {
+	animation-delay: 0.2s;
+}
+
+@keyframes slideDown {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(2rem);
+	}
+}
+
+@keyframes slideDownChoice {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(3rem);
+	}
+}
+
+@keyframes slideDownChoiceEnd {
+	0% {
+		transform: translateY(3rem);
+	}
+	100% {
+		transform: translateY(5rem);
+	}
+}
+
+@keyframes float {
+	0% {
+		transform: translateY(0px);
+	}
+
+	30% {
+		transform: translateY(-0.5rem);
+	}
+
+	60% {
+		transform: translateY(0px);
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+#game-arena-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.vs-container {
+	font-weight: 500;
+	font-size: 3rem;
+	white-space: nowrap;
+}
+
+#turn-container {
+	position: absolute;
+	top: -6rem;
+	border: dashed black 0.1rem;
+	padding: 1rem 1.5rem;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 1.5rem;
+	white-space: nowrap;
+	transform-origin: 50%;
+}
+
+#choice-container {
+	position: absolute;
+	bottom: 4dvh;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	width: 19rem;
+	gap: 1rem;
+	padding: 0.8rem;
+	border: solid black 0.23rem;
+	border-style: dashed;
+}
+
+.choice-box {
+	display: inline-block;
+	background-color: rgb(235, 235, 235);
+	position: relative;
+	border: 0.1rem rgb(177, 177, 177) dashed;
+	padding: 2%;
+	background-color: #fffefe;
+	transition: background-color 0.08s;
+	background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.18' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.choice-box img {
+	width: 100%;
+	pointer-events: none;
+}
+
+.choice-box-after {
+	position: absolute;
+	border: 0.1rem rgb(162, 160, 160) solid;
+	inset: -0.1rem;
+	transition: inset 0.17s;
+	cursor: pointer;
+}
+
+.choice-box-after:hover {
+	inset: -0.5rem;
+}
+
+.choice-box:active {
+	background-color: rgb(238, 236, 236);
+}
+
+.svg-choice-icon {
+	width: 4rem;
+	pointer-events: none;
+}
+
+.svg-choice-appear {
+	animation: slideDownChoice 0.2s forwards, fadeIn 0.8s forwards;
+}
+
+.svg-choice-disappear {
+	animation: slideDownChoiceEnd 0.5s forwards, fadeOut 0.6s forwards;
+}
+
+.score-win {
+	animation: score-win-bounce-up 1s forwards;
+}
+
+@keyframes score-win-bounce-up {
+	0% {
+		color: rgb(118, 222, 118);
+		transform: translateY(0);
+	}
+
+	20% {
+		transform: translateY(-2rem);
+	}
+
+	100% {
+		transform: translateY(0);
+		color: black;
+	}
+}
+
+.turn-expand {
+	animation: turn-expand 0.7s;
+}
+
+@keyframes turn-expand {
+	0% {
+		transform: translateX(-50%) scale(100%);
+	}
+
+	50% {
+		transform: translateX(-50%) scale(103%);
+	}
+
+	100% {
+		transform: translateX(-50%) scale(100%);
+	}
+}
+
+.choice-btn-on {
+	opacity: 100%;
+}
+
+.choice-btn-off {
+	opacity: 45%;
+	pointer-events: none;
+}
+
+#game-endPopUp-container {
+	background-color: rgba(0, 0, 0, 0.152);
+	position: fixed;
+	z-index: 999;
+	opacity:0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	pointer-events: none;
+	inset: 0;
+	transition: opacity 0.5s;
+}
+
+.game-endPopUp-container-fadeIn {
+	pointer-events: auto !important;
+	opacity: 1 !important;
+}
+
+#game-endPopUp-box {
+	padding: 1rem;
+	display: flex;
+	width: 20rem;
+	height: 10rem;
+	box-shadow: 0.5rem 0.5rem;
+	background-color: whitesmoke;
+	display: flex;
+	flex-direction: column;
+	border: solid 0.25rem black;
+	transform: scale(0);     
+    transition: transform 0.3s;
+}
+
+.game-endPopUp-box-expand {
+	transform: scale(1) !important;
+}
+
+#game-endPopUp-retryBtn {
+	margin-top: auto;
+	width: 5.5rem;
+	height: 3rem;
+	text-align: center;
+	display: flex;
+	font-weight: 600;
+	font-size: 1.02rem;
+	justify-content: center;
+	align-items: center;
+	border: dashed 0.15rem black;
+	background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.18' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+	cursor: pointer;
+	position: relative;
+}
+
+#game-endPopUp-retryBtn-after {
+	border: 0.1rem solid black;
+	position: absolute;
+	inset: -0.1rem;
+	opacity: 0;
+	transition: inset 0.3s, opacity 0.3s;
+}
+
+#game-endPopUp-retryBtn-after:hover {
+	opacity: 1;
+	inset: -0.5rem;
+}
+
+#game-endPopUp-title {
+	font-size: 1.4rem;
+	font-weight: 500;
+}

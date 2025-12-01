@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Rock Paper Scissors</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div id="game-endPopUp-container">
+			<div id="game-endPopUp-box">
+				<div id="game-endPopUp-title">Game End!</div>
+				<div id="game-endPopUp-retryBtn">
+					<div id="game-endPopUp-retryBtn-after"></div>
+					Retry
+				</div>
+			</div>
+		</div>
+		<div id="game-title">Rock Paper Scissors</div>
+		<div id="game-container">
+			<div id="game-roundCount-container">Rounds: 0/5</div>
+			<div id="game-arena-container">
+				<div class="player-container" id="player-1">
+					<div class="profile">
+						<div class="title">Human</div>
+						<div class="score">0</div>
+					</div>
+					<div class="player-choice-icon">
+						<div class="icon-choice-container"></div>
+						<div class="icon-three-dots">
+							<img src="images/dot.png" />
+							<img src="images/dot.png" />
+							<img src="images/dot.png" />
+						</div>
+					</div>
+				</div>
+
+				<div class="vs-container">== VS ==</div>
+
+				<div class="player-container" id="player-2">
+					<div class="profile">
+						<div class="title">PC</div>
+						<div class="score">0</div>
+					</div>
+					<div class="player-choice-icon">
+                        <div class="icon-choice-container"></div>
+						<div class="icon-three-dots">
+							<img src="images/dot.png" />
+							<img src="images/dot.png" />
+							<img src="images/dot.png" />
+						</div>
+					</div>
+				</div>
+
+				<div id="choice-container">
+					<div id="turn-container">Human's turn</div>
+					<div class="choice-box" id="rock">
+						<div class="choice-box-after"></div>
+						<!-- Used AI to make svg for the rock icon -->
+						<img src="SVGs/rock.svg" />
+					</div>
+					<div class="choice-box" id="paper">
+						<div class="choice-box-after"></div>
+						<img src="SVGs/paper.svg" />
+					</div>
+					<div class="choice-box" id="scissors">
+						<div class="choice-box-after"></div>
+						<img src="SVGs/scissors.svg" />
+					</div>
+				</div>
+
+				<div class="settings-container"></div>
+			</div>
+		</div>
+		<template class="svg-template" id="svg-rock-template">
+			<img class="svg-choice-icon hidden" id="svg-rock" src="SVGs/rock.svg" />
+		</template>
+		<template class="svg-template" id="svg-paper-template">
+			<img class="svg-choice-icon hidden" id="svg-paper" src="SVGs/paper.svg" />
+		</template>
+		<template class="svg-template" id="svg-scissors-template">
+			<img class="svg-choice-icon hidden" id="svg-scissors" src="SVGs/scissors.svg" />
+		</template>
+		<script src="script.js"></script>
+	</body>
+</html>
