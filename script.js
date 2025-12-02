@@ -76,31 +76,31 @@ function updateAndDisplayScore(p1, p2){
         // Update the Scores:
         if(p1 == "rock" && p2 == "scissors"){
             game.humanScore++;
-            displayScore(1);
+            displayScore(1, true);
         } else if(p1 == "scissors" && p2 == "paper"){
             game.humanScore++;
-            displayScore(1);
+            displayScore(1, true);
         } else if(p1 == "paper" && p2 == "rock"){
             game.humanScore++;
-            displayScore(1);
+            displayScore(1, true);
         } else if(p1 == p2){
             // tie, do nothing
         } else{
             game.computerScore++;
-            displayScore(2);
+            displayScore(2, true);
         }
 
     }, 500);
 }
 
 // display score animation
-function displayScore(player){
+function displayScore(player, animation){
     const targetP = player === 1 ? player1 : player2;
 
     const scoreContainer = targetP.querySelector(".score");
     scoreContainer.textContent = targetP === player1 ? game.humanScore : game.computerScore;
 
-    if(player !== 0){
+    if(animation == true){
         scoreContainer.classList.add("score-win");
         scoreContainer.addEventListener("animationend", function handler() {
             scoreContainer.classList.remove("score-win");
@@ -194,7 +194,8 @@ function resetGame(){
     game.currentRound = 0;
 
     displayCountRound();
-    displayScore(0);
+    displayScore(1, false);
+    displayScore(2, false);
 }
 
 // display end game pop up
